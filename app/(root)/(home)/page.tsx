@@ -2,7 +2,6 @@
 "use client";
 import { useGlobalContext } from "@/context";
 import { redirect } from "next/navigation";
-import React from "react";
 
 const page = () => {
   const { account } = useGlobalContext();
