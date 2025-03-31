@@ -79,12 +79,33 @@ const CreateAccountForm = () => {
                     disabled={isSubmitting}
                     inputMode="numeric"
                     pattern="[0-9]*"
+                    className="focus-visible:ring-0"
                   >
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
+                    <InputOTPGroup className="gap-3">
+                      {[...Array(4)].map((_, index) => (
+                        <InputOTPSlot
+                          key={index}
+                          index={index}
+                          className={`
+                            w-14 h-14 
+                            text-xl 
+                            bg-gray-800 
+                            border-2 
+                            border-gray-700
+                            rounded-lg 
+                            text-white 
+                            font-semibold 
+                            transition-all 
+                            duration-200 
+                            focus:border-blue-500 
+                            focus:ring-2 
+                            focus:ring-blue-500/20
+                            disabled:opacity-50
+                            shadow-md
+                            hover:border-gray-600
+                          `}
+                        />
+                      ))}
                     </InputOTPGroup>
                   </InputOTP>
                 </FormControl>
