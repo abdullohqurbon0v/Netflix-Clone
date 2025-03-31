@@ -3,15 +3,6 @@ import GithubProvider from "next-auth/providers/github";
 import { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
-declare module "next-auth" {
-  interface Session {
-    user?: {
-      username?: string;
-      uid?: string;
-    } & Session["user"];
-  }
-}
-
 const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
