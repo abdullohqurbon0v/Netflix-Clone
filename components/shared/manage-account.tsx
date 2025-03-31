@@ -2,17 +2,29 @@ import { LockKeyhole, Trash2 } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
+import LoginAccounrForm from "../form/login-accounr-form";
+import CreateAccounrForm from "../form/create-account-form";
 
 const ManageAccount = () => {
   const [isDelete, setIsDelete] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [state, setState] = useState<"create" | "login">("create");
+
   return (
     <div className="min-h-screen flex justify-center flex-col items-center relative">
       <div className="flex justify-center flex-col items-center">
-        <h1 className="text-white font-bold text-5xl my-12 ">
+        <h1 className="text-white font-bold text-5xl my-12">
           Who&apos;s watching
         </h1>
         <ul className="flex p-0 my-12">
-          <li className="max-w-[200px] w-[155px] cursor-pointer flex flex-col items-center gap-3 min-w-[200px]">
+          <li
+            className="max-w-[200px] w-[155px] cursor-pointer flex flex-col items-center gap-3 min-w-[200px]"
+            onClick={() => {
+              setState("login");
+              setOpen(true);
+            }}
+          >
             <div className="relative">
               <div className="max-w-[200px] rounded min-w-[84px] max-h-[200px] min-h-[84px] object-cover w-[155px] h-[155px] relative">
                 <Image
@@ -34,7 +46,13 @@ const ManageAccount = () => {
               <LockKeyhole />
             </div>
           </li>
-          <li className="border  bg-[#e5b109] font-bold text-xl border-black max-w-[200px] rounded min-w-[84px] max-h-[200px] min-h-[84px] w-[155px] h-[155px] cursor-pointer flex justify-center items-center">
+          <li
+            className="border bg-[#e5b109] font-bold text-xl border-black max-w-[200px] rounded min-w-[84px] max-h-[200px] min-h-[84px] w-[155px] h-[155px] cursor-pointer flex justify-center items-center"
+            onClick={() => {
+              setOpen(true);
+              setState("create");
+            }}
+          >
             Add Account
           </li>
         </ul>
@@ -45,6 +63,15 @@ const ManageAccount = () => {
           Manage Profiles
         </Button>
       </div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogTitle />
+          <div>
+            {state === "login" && <LoginAccounrForm />}
+            {state === "create" && <CreateAccounrForm />}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

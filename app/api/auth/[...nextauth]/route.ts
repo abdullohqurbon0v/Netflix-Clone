@@ -1,21 +1,17 @@
 import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { JWT } from "next-auth/jwt";
-
-// Extend the default Session type to include custom properties
 declare module "next-auth" {
   interface Session {
     user: {
-      name?: string | null; // Default property
-      email?: string | null; // Default property
-      image?: string | null; // Default property
-      username?: string; // Custom property
-      uid?: string; // Custom property
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      username?: string;
+      uid?: string;
     };
   }
 }
-
-// Define auth options
 const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
