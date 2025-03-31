@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AiFillGithub } from "react-icons/ai";
+import { signIn } from "next-auth/react";
 const Login = () => {
   return (
     <div className={"w-full h-screen"}>
@@ -24,6 +25,7 @@ const Login = () => {
             className={
               "mt-4 flex items-center gap-2 w-full h-[56px] bg-red-600 !text-white hover:bg-red-500 cursor-pointer"
             }
+            onClick={() => signIn("github")}
           >
             <AiFillGithub className={"w-7 h-7"} />
             Sign in with Github
