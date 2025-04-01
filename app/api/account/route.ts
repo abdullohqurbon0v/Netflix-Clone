@@ -2,6 +2,7 @@ import Account from "@/database/account";
 import { connectToDataBase } from "@/lib/mongoose";
 import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
+import { error } from "console";
 
 export const dynamic = "force-dynamic";
 interface RequestBody {
@@ -63,6 +64,65 @@ export async function POST(req: Request) {
         },
       },
       { status: 201 }
+    );
+  } catch (e) {
+    console.error("Error in POST /accounts:", e);
+    return NextResponse.json(
+      {
+        error: true,
+        message: "Something went wrong",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    await connectToDataBase();
+    const { searchParams } = new URL(req.url);
+    const uid = searchParams.get("uid");
+    if (!uid) {
+      return NextResponse.json({
+        message: "Accout id is mandatory",
+        error: true,
+      });
+    }
+    const accounts = await Account.find({ uid });
+
+    return NextResponse.json({ error: false, accounts }, { status: 200 });
+  } catch (e) {
+    console.error("Error in POST /accounts:", e);
+    return NextResponse.json(
+      {
+        error: true,
+        message: "Something went wrong",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    await connectToDataBase();
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({
+        message: "Accout id is mandatory",
+        error: true,
+      });
+    }
+
+    await Account.findByIdAndDelete(id);
+
+    return NextResponse.json(
+      {
+        message: "Account deleted successfuly",
+        error: false,
+      },
+      { status: 200 }
     );
   } catch (e) {
     console.error("Error in POST /accounts:", e);

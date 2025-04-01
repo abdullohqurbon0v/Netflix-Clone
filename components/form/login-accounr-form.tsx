@@ -3,7 +3,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { Loader2 } from "lucide-react";
 
 const LoginAccounrForm = () => {
-  const [error, setError] = useState(false);
+  const [error] = useState(false);
   const [pin, setPin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
