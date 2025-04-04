@@ -4,10 +4,6 @@
 
 <p id="description">Indulge in our Netflix clone: ultra-fast streaming tailored recommendations and sleek design. Dive into movies and shows effortlessly—your gateway to entertainment perfection!</p>
 
-<h2>🚀 Demo</h2>
-
-[https://sammi-netflix.vercel.app](https://sammi-netflix.vercel.app)
-
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
