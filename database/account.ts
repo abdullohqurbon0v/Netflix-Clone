@@ -1,33 +1,10 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose from "mongoose";
 
-interface IAccount extends Document {
-  uid: string;
-  name: string;
-  pin: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-const accountSchema: Schema = new Schema<IAccount>(
-  {
-    uid: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    pin: {
-      type: String,
-      required: true,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+const accountSchema = new mongoose.Schema({
+  uid: String,
+  name: String,
+  pin: String,
+}, {timestamps: true});
 
-const Account =
-  mongoose.models.Account || mongoose.model<IAccount>("Account", accountSchema);
-
+const Account = mongoose.models.Account || mongoose.model("Account", accountSchema);
 export default Account;

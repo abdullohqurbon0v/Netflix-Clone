@@ -1,40 +1,34 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { Provider } from "@/provider";
+import './globals.css'
+
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import {Provider} from "@/provider";
 import GlobalContext from "@/context";
-import { ChildProps } from "@/types/inedx";
+import {ReactNode} from "react";
+import {Toaster} from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Netflix clone",
-  description: "Netflix clone next js",
-};
+  title: 'Netflix Clone',
+  description: 'Netflix Clone built with Next.js',
+}
 
-export default function RootLayout({ children }: ChildProps) {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Provider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <GlobalContext>{children}</GlobalContext>
+      <body className={inter.className}>
+        <Provider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <GlobalContext>
+            {children}
+            <Toaster />
+          </GlobalContext>
         </Provider>
       </body>
     </html>
-  );
+  )
 }

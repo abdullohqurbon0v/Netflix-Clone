@@ -1,26 +1,29 @@
-import mongoose, { ConnectOptions } from "mongoose";
+import mongoose, {ConnectOptions} from "mongoose";
 
 let isConnected: boolean = false;
 
-export const connectToDataBase = async () => {
+export const connectToDatabase = async () => {
   mongoose.set("strictQuery", true);
 
-  if (!process.env.MONGO_URL) {
-    throw new Error("MONGO URL not found  in .env");
+  if(!process.env.MONGODB_URL) {
+    throw new Error("MONGODB_URL not found");
   }
 
-  if (isConnected) return;
+  if(isConnected) {
+    return;
+  }
+
   try {
     const options: ConnectOptions = {
       dbName: "netflix",
       autoCreate: true,
-    };
+    }
 
-    await mongoose.connect(process.env.MONGO_URL, options);
+    await mongoose.connect(process.env.MONGODB_URL, options);
 
     isConnected = true;
-    console.log("MONGO_DB connected");
-  } catch (error) {
-    console.log("ERROR CONNECTING ", error);
+    console.log("MongoDB connected");
+  }catch (e) {
+    console.log("MongoDB connection error. Please make sure MongoDB is running");
   }
-};
+}

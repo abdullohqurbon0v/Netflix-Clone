@@ -1,12 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-"use client";
-import { useGlobalContext } from "@/context";
-import { redirect } from "next/navigation";
+import React from 'react';
+import {redirect} from "next/navigation";
 
-const page = () => {
-  const { account } = useGlobalContext();
-  console.log(account);
-  return redirect("/browse");
+const Page = () => {
+  return redirect('/browse')
 };
 
-export default page;
+export default Page;
