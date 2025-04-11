@@ -1,6 +1,5 @@
 <h1 align="center" id="title">Discover Seamless Streaming: Netflix Clone with Next.js Node.js MongoDB &amp; Tailwind CSS</h1>
 
-<p align="center"><img src="https://media.graphassets.com/wy6y0Xf1SgKEO2mICeir" alt="project-image"></p>
 
 <p id="description">Indulge in our Netflix clone: ultra-fast streaming tailored recommendations and sleek design. Dive into movies and shows effortlessly—your gateway to entertainment perfection!</p>
 
